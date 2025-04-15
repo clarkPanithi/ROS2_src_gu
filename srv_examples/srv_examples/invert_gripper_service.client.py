@@ -19,13 +19,21 @@ def main():
   inverted = False
 
   ##############YOUR CODE IN BETWEEN HERE##############
+  #The call_async method is used to send the request to the open_gripper service.
+  # rclpy.spin_until_future_complete is used to wait for the service response.
   future = gripper_service.call_async(req)
   #Use spin_until_future_complete to wait for the ROS2 service server
   rclpy.spin_until_future_complete(gripper_service_client, future)
   try:
     result = future.result()
-  except KeyboardInterrupt:
-    pass
+    if result.success:
+      print(f"Gripper state inverted successfully: {result.message}")
+    else:
+        print(f"Gripper state inversion failed: {result.message}")
+  except Exception as e:
+    print(f"Service call failed: {e}")
+    
+    
   inverted = result.success
   print(inverted)
 
