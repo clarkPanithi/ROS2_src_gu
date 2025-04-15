@@ -21,6 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'turtlesim_geofence_reset_srv = srv_examples.turtlesim_geofence_reset_srv:main',
+        'open_gripper_service_server = srv_examples.open_gripper_service_server:main',
+        'invert_gripper_service_client = srv_examples.invert_gripper_service_client:main',
         ],
     },
 )
