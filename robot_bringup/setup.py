@@ -24,6 +24,8 @@ setup(
     entry_points={
         'console_scripts': [
         'dynamic_transform = robot_bringup.dynamic_transform:main',
+        'tf3_odom_tf = robot_bringup.tf3_odom_tf:main',
+        'teleop = robot_bringup.teleop:main',
         ],
     },
 )
