@@ -23,6 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+        'dynamic_transform = robot_bringup.dynamic_transform:main',
         ],
     },
 )
