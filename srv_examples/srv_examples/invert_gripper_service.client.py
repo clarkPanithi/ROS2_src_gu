@@ -40,7 +40,6 @@ def main():
   gripper_service_client.destroy_node()
   rclpy.shutdown()
   ##############YOUR CODE IN BETWEEN HERE##############
-  def callback(msg):
 
 if __name__ == '__main__':
     main()
