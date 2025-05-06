@@ -6,9 +6,13 @@
   <description>TODO: Package description</description>
   <maintainer email="panithithungkao@gmail.com">clarkpanithi</maintainer>
   <license>TODO: License declaration</license>
-
+  <description>A teleoperation node for TurtleBot3 using a joystick.</description>
   <depend>joy</depend>
   <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
