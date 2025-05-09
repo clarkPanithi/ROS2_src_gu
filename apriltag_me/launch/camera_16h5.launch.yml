@@ -1,0 +1,64 @@
+launch:
+- arg:
+    name: device
+    default: "0"
+- node:
+    pkg: apriltag_me
+    exec: apriltag_me
+    name: apriltag_me
+- node_container:
+    pkg: rclcpp_components
+    exec: component_container
+    name: apriltag_container
+    namespace: ""
+    composable_node:
+    - pkg: camera_ros
+      plugin: camera::CameraNode
+      name: camera
+      namespace: camera
+      param:
+      - name: camera
+        value: $(var device)
+      - name: calibration_file
+        value: $(find-pkg-share apriltag_me)/cfg/camera_calibration.yaml
+      extra_arg:
+      - name: use_intra_process_comms
+        value: "True"
+
+    - pkg: image_proc
+      plugin: image_proc::RectifyNode
+      name: rectify
+      namespace: camera
+      remap:
+      - from: image
+        to: /camera/camera/image_raw
+      - from: camera_info
+        to: /camera/camera/camera_info
+      extra_arg:
+      - name: use_intra_process_comms
+        value: "True"
+
+    - pkg: apriltag_ros
+      plugin: AprilTagNode
+      name: apriltag
+      namespace: apriltag
+      remap:
+      - from: /apriltag/image_rect
+        to: /camera/image_rect
+      - from: /camera/camera_info
+        to: /camera/camera/camera_info
+      param:
+      - from: $(find-pkg-share apriltag_me)/cfg/tags_16h5.yaml
+      extra_arg:
+      - name: use_intra_process_comms
+        value: "True"
+- node:
+    pkg: apriltag_me
+    exec: static_camera_info_publisher
+    name: camera_info_publisher
+    namespace: camera1
+    param:
+    - calibration_file: $(find-pkg-share apriltag_me)/cfg/camera_calibration.yaml
+    remap:
+    - from: /camera_info
+      to: /camera/camera/camera_info
