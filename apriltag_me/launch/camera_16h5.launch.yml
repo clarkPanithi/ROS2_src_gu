@@ -19,8 +19,6 @@ launch:
       param:
       - name: camera
         value: $(var device)
-      - name: calibration_file
-        value: $(find-pkg-share apriltag_me)/cfg/camera_calibration.yaml
       extra_arg:
       - name: use_intra_process_comms
         value: "True"
@@ -52,13 +50,3 @@ launch:
       extra_arg:
       - name: use_intra_process_comms
         value: "True"
-- node:
-    pkg: apriltag_me
-    exec: static_camera_info_publisher
-    name: camera_info_publisher
-    namespace: camera1
-    param:
-    - calibration_file: $(find-pkg-share apriltag_me)/cfg/camera_calibration.yaml
-    remap:
-    - from: /camera_info
-      to: /camera/camera/camera_info
