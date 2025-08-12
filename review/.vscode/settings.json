@@ -48,5 +48,6 @@
         "/home/clarkpanithi/robot_ws/install/challenge_2025/lib/python3.10/site-packages",
         "/home/clarkpanithi/robot_ws/install/apriltag_msgs/local/lib/python3.10/dist-packages",
         "/home/clarkpanithi/robot_ws/install/apriltag_me/lib/python3.10/site-packages"
-    ]
+    ],
+    "ros.distro": "humble"
 }
