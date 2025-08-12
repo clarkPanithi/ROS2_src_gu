@@ -1,0 +1,10 @@
+# YAML configuration file
+path: /home/clarkpanithi/clarkpanithi/my_model/dataset  # dataset root directory
+train: images/train  # train images (relative to 'path')
+val: images/val  # val images (relative to 'path')
+test:  # test images (optional)
+
+# Classes with their indices
+names:
+    0: label  # Class name with indices
+#   1: example
